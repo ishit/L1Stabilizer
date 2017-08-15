@@ -1,4 +1,4 @@
-function [ t_scale, t_theta, t_trans ] = readImages( im_array, features, descriptors )
+function [ t_scale, t_theta, t_trans ] = getTransforms( im_array, features, descriptors )
 %getTransforms Summary
 %   
 
@@ -11,13 +11,13 @@ t_theta = zeros(num_frames - 1, 1);
 t_trans = zeros(num_frames - 1, 2);
 
 for k = 1:num_frames - 1
-    [matches, score] = vl_ubcmatch(descriptors{k}, descriptors{k+1});
+    [matches, ~] = vl_ubcmatch(descriptors{k}, descriptors{k+1});
 
     % matched_a and matched_b are matched feature points for k and k + 1 images
     matched_a = features{k}(1:2, matches(1, :));
     matched_b = features{k + 1}(1:2, matches(2, :));
 
-    [tform{k}, inlier_a, inlier_b] = estimateGeometricTransform(matched_a', matched_b', 'similarity');
+    [tform{k}, ~, ~] = estimateGeometricTransform(matched_a', matched_b', 'similarity');
 
     % Get cumulative transformation, i.e. b/w kth frame and 1st frame
     if ~exist('prev_T', 'var')
@@ -36,7 +36,7 @@ for k = 1:num_frames - 1
     % s = sqrt(a^2 + c^2) 
     t_scale(k) = sqrt(T(1, 1).^2 + T(2, 1).^2);
     % theta = atan(b / d)
-    % Check the similarity matrix
+    % FIXME: Check the similarity matrix
     % t_theta(k) = atan2(T(1, 2), T(2, 2));
     t_theta(k) = atan2(T(2,1), T(1,1));
     t_theta(k) = rad2deg(t_theta(k)) * 1000;
