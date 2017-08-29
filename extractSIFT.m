@@ -9,7 +9,8 @@ features = cell(n, 1);
 descriptors = cell(n, 1);
 
 for k = 1:n
-    [~, ~, chan] = size(images{k});
+    curr_image = images{k};
+    [~, ~, chan] = size(curr_image);
     if(chan == 3)
         [features{k}, descriptors{k}] = vl_sift(single(rgb2gray(curr_image)));
     else
