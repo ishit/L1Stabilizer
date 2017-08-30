@@ -1,4 +1,6 @@
 function n_transforms = parToMat( t_transforms )
+%%parToMat summary
+%  Convert t_Transforms from parametric form to matrix form
 
     n = size(t_transforms, 1);
     n_transforms = cell(n, 1);

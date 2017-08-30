@@ -1,12 +1,17 @@
-function n_transforms = optimizeAffineTransforms( t_transforms, im_size )
+function n_transforms = optimizeTransforms( t_transforms, im_size )
+%%n_transforms summary
+% Find optimized camera path
 
 run('~/cvx/cvx_setup.m');
 
 n = size(t_transforms, 1);
+
+% Find crop window
+crop_ratio = 0.8
 center_x = round(im_size(2) / 2);
 center_y = round(im_size(1) / 2);
-crop_w = round(im_size(2) * 0.8);
-crop_h = round(im_size(1) * 0.8);
+crop_w = round(im_size(2) * crop_ratio);
+crop_h = round(im_size(1) * crop_ratio);
 crop_x = round(center_x - crop_w / 2);
 crop_y = round(center_y - crop_h / 2);
 crop_points = [crop_x crop_y;
@@ -14,12 +19,15 @@ crop_points = [crop_x crop_y;
                 crop_x crop_y + crop_h;
                 crop_x + crop_w crop_y + crop_h];
 
-
+% Weights. Refer to figure 8 in the original paper
 w1 = 10; w2 = 1; w3 = 100;
+
+% Weighting of 100:1 for affine to translational parts
 c1 = [1 1 100 100 100 100]';
 c2 = c1;
 c3 = c1;
 
+% Proximity variables
 U = zeros(6, 6);
 U(3, 1) = 1; U(6, 4) = 1;
 U(4, 2) = 1; U(5, 3) = 1;
@@ -84,5 +92,7 @@ subject to
 
 cvx_end
 
+% Convert parametric transforms to matrix form
 n_transforms = parToMat(p);
+
 end
