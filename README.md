@@ -1,6 +1,6 @@
 # Video Stabilization
 
-Implementation of "Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths"([link](http://ieeexplore.ieee.org/document/5995525/)). The algorithm computes L1-norm optimized camera paths composed of constant. linear and hyperbolic segments inspired from professional camera equipment like tripods and camera dolly. The algorithm is evidently laden with significance for it's implementation in most modern video editors like Adobe Premiere and Youtube. 
+Implementation of "Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths"([link](http://ieeexplore.ieee.org/document/5995525/)). The algorithm computes L1-norm optimized camera paths composed of constant, linear and parabolic segments inspired from professional camera equipment like tripods and camera dolly. The algorithm is evidently laden with significance for it's implementation in several modern video editors and YouTube. 
 
 ![Output sample](https://raw.githubusercontent.com/ishit/L1Stabilizer/master/stable.gif)
 
@@ -33,7 +33,15 @@ vlfeat
 
 ### Plots
 ![alt-text-1](https://raw.githubusercontent.com/ishit/L1Stabilizer/master/plots/motion_x.png "Motion in X") ![alt-text-2](https://raw.githubusercontent.com/ishit/L1Stabilizer/master/plots/motion_y.png "Motion in Y")
+
+## To-Do
+
+- [ ] Wobble suppression
+- [ ] Mitigate rolling shutter troubles
+- [ ] Video retargeting
+- [ ] Saliency tracker(eg. face)
+
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GPL v.2 License.
 
