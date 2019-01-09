@@ -1,6 +1,6 @@
 # Video Stabilization
 
-Implementation of "Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths"([link](http://ieeexplore.ieee.org/document/5995525/)). The algorithm computes L1-norm optimized camera paths composed of constant, linear and parabolic segments inspired from professional camera equipment like tripods and camera dolly. The algorithm is evidently laden with significance for it's implementation in several modern video editors and YouTube. 
+Implementation of "Auto-Directed Video Stabilization with Robust L1 Optimal Camera Paths"([link](http://ieeexplore.ieee.org/document/5995525/)). The algorithm computes L1-norm optimized camera paths composed of constant, linear and parabolic segments inspired from professional camera equipment like tripods and camera dolly. The algorithm is evidently laden with significance for its implementation in several modern video editors and YouTube. 
 
 ![Output sample](https://raw.githubusercontent.com/ishit/L1Stabilizer/master/stable.gif)
 
