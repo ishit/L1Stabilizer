@@ -28,7 +28,7 @@ n_transforms = optimizeTransforms(t_transforms, im_size);
 plotPath(t_transforms, n_transforms);
 
 % Apply new camera path and crop
-n_im_array = applyOptimizedTransforms(im_array, n_transforms, t_transforms);
+n_im_array = applyOptimizedTransforms(im_array, n_transforms);
 
 % Save frames
 for k=1:num_frames
